@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package lab_prac1_tst3;
+package practica1;
 
 import java.io.*;
-import static lab_prac1_tst3.Users.saveUser2DBFile;
+import static practica1.Users.saveUser2DBFile;
 
 /**
  *

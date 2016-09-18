@@ -5,8 +5,12 @@
  */
 package practica1;
 
+import java.awt.Color;
+import java.awt.Font;
 import static java.lang.System.exit;
+import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
 
 /**
@@ -18,12 +22,44 @@ public class Interfaz extends javax.swing.JFrame {
     /**
      * Creates new form Interfaz
      */
-     FormatoRegistro formato = new FormatoRegistro();
+     FormatoRegistro formatoCrearUsuario = new FormatoRegistro();
+     FormatoEquipo formatoCrearEquipo = new FormatoEquipo();
+     FormatoServicio formatoCrearServicio = new FormatoServicio();
+     FormatoRegistro formatoLeerUsuario = new FormatoRegistro();
+     FormatoEquipo formatoLeerEquipo = new FormatoEquipo();
+     FormatoServicio formatoLeerServicio = new FormatoServicio();
+     FormatoRegistro formatoEditarUsuario = new FormatoRegistro();
+     FormatoEquipo formatoEditarEquipo = new FormatoEquipo();
+     FormatoServicio formatoEditarServicio = new FormatoServicio();
+     javax.swing.DefaultListModel modelo = new javax.swing.DefaultListModel();
+     
+     
     public Interfaz() {
         initComponents();
-        jPanel1.setVisible(false);
+        jPanel1.setVisible(true);
+       titulo.setText("La Clinica del PC");
+        formatoCrearUsuario.setVisible(false);
+        crearUsuario.setVisible(false);
+        crearEquipo.setVisible(false);        // TODO add your handling code here:
+        crearServicio.setVisible(false);        // TODO add your handling code here:
+        leerUsuario.setVisible(false);        // TODO add your handling code here:
+        leerEquipo.setVisible(false);        // TODO add your handling code here:
+        leerServicio.setVisible(false);        // TODO add your handling code here:
+        editarUsuario.setVisible(false);        // TODO add your handling code here:
+        editarEquipo.setVisible(false);        // TODO add your handling code here:
+        editarServicio.setVisible(false);        // TODO add your handling code here:
+        borrarUsuario.setVisible(false);        // TODO add your handling code here:
+        borrarEquipo.setVisible(false);        // TODO add your handling code here:
+        borrarServicio.setVisible(false);        // TODO add your handling code here:
+
        
-        formato.setVisible(false);
+        modelo.addElement("Arley Hoyos");    // !!!!CREACION DE LA LISTA!!!!!, TODO SE AGREGA AL MODELO Y LUEGO SE LE PASA EL MODELO A LA LISTA
+        modelo.addElement("Pepito Perez");
+        modelo.addElement("Elsa Pato");
+        Users usuario = new Users();                // ejemplo de pasar datos desde la clase users
+        usuario.identificacion = "Lalo Cota";   
+        modelo.addElement(usuario.identificacion);
+        lista.setModel(modelo);        //AL FINAL SIEMPRE SE DEBE PASAR EL MODELO A LA LISTA
 
 
         
@@ -42,32 +78,30 @@ public class Interfaz extends javax.swing.JFrame {
         jPopupMenu1 = new javax.swing.JPopupMenu();
         jFrame1 = new javax.swing.JFrame();
         jOptionPane1 = new javax.swing.JOptionPane();
-        jPanel1 = new javax.swing.JPanel();
-        textBuscar = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        botonBuscarUsuario = new javax.swing.JButton();
-        botonBuscarEquipo = new javax.swing.JButton();
-        botonBuscarServicio = new javax.swing.JButton();
-        botonEliminarEquipo = new javax.swing.JButton();
-        botonEliminarUsuario = new javax.swing.JButton();
-        botonEliminarServicio = new javax.swing.JButton();
+        jMenuItem2 = new javax.swing.JMenuItem();
         jScrollPane2 = new javax.swing.JScrollPane();
-        areaMuestra = new javax.swing.JTextArea();
+        jList1 = new javax.swing.JList<>();
+        titulo = new java.awt.Label();
+        jPanel1 = new javax.swing.JPanel();
+        crearUsuario = new javax.swing.JButton();
+        crearEquipo = new javax.swing.JButton();
+        crearServicio = new javax.swing.JButton();
+        leerUsuario = new javax.swing.JButton();
+        leerEquipo = new javax.swing.JButton();
+        leerServicio = new javax.swing.JButton();
+        editarUsuario = new javax.swing.JButton();
+        editarEquipo = new javax.swing.JButton();
+        editarServicio = new javax.swing.JButton();
+        borrarUsuario = new javax.swing.JButton();
+        borrarEquipo = new javax.swing.JButton();
+        borrarServicio = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        lista = new javax.swing.JList<>(modelo);
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        eliminarUsuario = new javax.swing.JMenu();
-        registrarUsuario = new javax.swing.JMenuItem();
-        buscarUsuario = new javax.swing.JMenuItem();
-        eliminaUsuario = new javax.swing.JMenuItem();
-        jMenu4 = new javax.swing.JMenu();
-        registraEquipo = new javax.swing.JMenuItem();
-        buscarEquipo = new javax.swing.JMenuItem();
-        eliminaEquipo = new javax.swing.JMenuItem();
-        jMenu5 = new javax.swing.JMenu();
-        registrarServicio = new javax.swing.JMenuItem();
-        buscarServicio = new javax.swing.JMenuItem();
-        eliminarServicio = new javax.swing.JMenuItem();
+        menuUsuarios = new javax.swing.JMenuItem();
+        menuEquipos = new javax.swing.JMenuItem();
+        menuServicios = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
@@ -86,53 +120,101 @@ public class Interfaz extends javax.swing.JFrame {
             .addGap(0, 300, Short.MAX_VALUE)
         );
 
+        jMenuItem2.setText("jMenuItem2");
+
+        jList1.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane2.setViewportView(jList1);
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        titulo.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        titulo.setText("label1");
 
-        jLabel1.setText("ID del Usuario:");
-
-        jLabel2.setText("Buscar Usuario");
-
-        botonBuscarUsuario.setText("Buscar");
-        botonBuscarUsuario.addActionListener(new java.awt.event.ActionListener() {
+        crearUsuario.setText("Crear Usuario");
+        crearUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonBuscarUsuarioActionPerformed(evt);
+                crearUsuarioActionPerformed(evt);
             }
         });
 
-        botonBuscarEquipo.setText("Buscar");
-        botonBuscarEquipo.addActionListener(new java.awt.event.ActionListener() {
+        crearEquipo.setText("Crear Equipo");
+        crearEquipo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonBuscarEquipoActionPerformed(evt);
+                crearEquipoActionPerformed(evt);
             }
         });
 
-        botonBuscarServicio.setText("Buscar");
-        botonBuscarServicio.addActionListener(new java.awt.event.ActionListener() {
+        crearServicio.setText("Crear Servicio");
+        crearServicio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonBuscarServicioActionPerformed(evt);
+                crearServicioActionPerformed(evt);
             }
         });
 
-        botonEliminarEquipo.setText("Eliminar");
-        botonEliminarEquipo.addActionListener(new java.awt.event.ActionListener() {
+        leerUsuario.setText("Leer Usuario");
+        leerUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonEliminarEquipoActionPerformed(evt);
+                leerUsuarioActionPerformed(evt);
             }
         });
 
-        botonEliminarUsuario.setText("Eliminar");
-        botonEliminarUsuario.addActionListener(new java.awt.event.ActionListener() {
+        leerEquipo.setText("Leer Equipo");
+        leerEquipo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonEliminarUsuarioActionPerformed(evt);
+                leerEquipoActionPerformed(evt);
             }
         });
 
-        botonEliminarServicio.setText("Eliminar");
-        botonEliminarServicio.addActionListener(new java.awt.event.ActionListener() {
+        leerServicio.setText("Leer Servicio");
+        leerServicio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonEliminarServicioActionPerformed(evt);
+                leerServicioActionPerformed(evt);
+            }
+        });
+
+        editarUsuario.setText("Editar Usuario");
+        editarUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editarUsuarioActionPerformed(evt);
+            }
+        });
+
+        editarEquipo.setText("Editar Equipo");
+        editarEquipo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editarEquipoActionPerformed(evt);
+            }
+        });
+
+        editarServicio.setText("Editar Servicio");
+        editarServicio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editarServicioActionPerformed(evt);
+            }
+        });
+
+        borrarUsuario.setText("Borrar Usuario");
+        borrarUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                borrarUsuarioActionPerformed(evt);
+            }
+        });
+
+        borrarEquipo.setText("Borrar Equipo");
+        borrarEquipo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                borrarEquipoActionPerformed(evt);
+            }
+        });
+
+        borrarServicio.setText("Borrar Servicio");
+        borrarServicio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                borrarServicioActionPerformed(evt);
             }
         });
 
@@ -141,149 +223,96 @@ public class Interfaz extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel2)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(79, 79, 79)
-                        .addComponent(jLabel1)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(leerUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(crearUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(crearEquipo)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(crearServicio))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(borrarUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(editarUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(botonBuscarUsuario)
-                                            .addComponent(botonBuscarServicio))
-                                        .addGap(18, 18, 18)
-                                        .addComponent(botonEliminarUsuario))
-                                    .addComponent(botonEliminarServicio, javax.swing.GroupLayout.Alignment.TRAILING)))
+                                .addComponent(leerEquipo, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(leerServicio, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(27, 27, 27)
-                                .addComponent(textBuscar))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(botonBuscarEquipo)
-                        .addGap(18, 18, 18)
-                        .addComponent(botonEliminarEquipo)))
-                .addGap(64, 64, 64))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(editarEquipo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(borrarEquipo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(editarServicio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(borrarServicio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(4, 4, 4)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(textBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(crearUsuario)
+                    .addComponent(crearEquipo)
+                    .addComponent(crearServicio))
+                .addGap(30, 30, 30)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(botonBuscarEquipo)
-                    .addComponent(botonEliminarEquipo))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(botonEliminarUsuario)
-                            .addComponent(botonBuscarServicio))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(botonEliminarServicio))
-                    .addComponent(botonBuscarUsuario, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addContainerGap())
+                    .addComponent(leerUsuario)
+                    .addComponent(leerEquipo)
+                    .addComponent(leerServicio))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(editarUsuario)
+                    .addComponent(editarEquipo)
+                    .addComponent(editarServicio))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(borrarUsuario)
+                    .addComponent(borrarEquipo)
+                    .addComponent(borrarServicio))
+                .addContainerGap(114, Short.MAX_VALUE))
         );
 
-        areaMuestra.setColumns(20);
-        areaMuestra.setRows(5);
-        jScrollPane2.setViewportView(areaMuestra);
+        lista.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane1.setViewportView(lista);
 
         jMenu1.setText("Menu");
 
-        eliminarUsuario.setText("Usuarios");
-
-        registrarUsuario.setText("Registrar");
-        registrarUsuario.addActionListener(new java.awt.event.ActionListener() {
+        menuUsuarios.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_U, java.awt.event.InputEvent.CTRL_MASK));
+        menuUsuarios.setText("Usuarios");
+        menuUsuarios.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                registrarUsuarioActionPerformed(evt);
+                menuUsuariosActionPerformed(evt);
             }
         });
-        eliminarUsuario.add(registrarUsuario);
+        jMenu1.add(menuUsuarios);
 
-        buscarUsuario.setText("Buscar");
-        buscarUsuario.addActionListener(new java.awt.event.ActionListener() {
+        menuEquipos.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.CTRL_MASK));
+        menuEquipos.setText("Equipos");
+        menuEquipos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buscarUsuarioActionPerformed(evt);
+                menuEquiposActionPerformed(evt);
             }
         });
-        eliminarUsuario.add(buscarUsuario);
+        jMenu1.add(menuEquipos);
 
-        eliminaUsuario.setText("Eliminar");
-        eliminaUsuario.addActionListener(new java.awt.event.ActionListener() {
+        menuServicios.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_MASK));
+        menuServicios.setText("Servicios");
+        menuServicios.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                eliminaUsuarioActionPerformed(evt);
+                menuServiciosActionPerformed(evt);
             }
         });
-        eliminarUsuario.add(eliminaUsuario);
-
-        jMenu1.add(eliminarUsuario);
-
-        jMenu4.setText("Equipos");
-
-        registraEquipo.setText("Registrar");
-        registraEquipo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                registraEquipoActionPerformed(evt);
-            }
-        });
-        jMenu4.add(registraEquipo);
-
-        buscarEquipo.setText("Buscar");
-        buscarEquipo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buscarEquipoActionPerformed(evt);
-            }
-        });
-        jMenu4.add(buscarEquipo);
-
-        eliminaEquipo.setText("Eliminar");
-        eliminaEquipo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                eliminaEquipoActionPerformed(evt);
-            }
-        });
-        jMenu4.add(eliminaEquipo);
-
-        jMenu1.add(jMenu4);
-
-        jMenu5.setText("Servicios");
-
-        registrarServicio.setText("Registrar");
-        registrarServicio.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                registrarServicioActionPerformed(evt);
-            }
-        });
-        jMenu5.add(registrarServicio);
-
-        buscarServicio.setText("Buscar");
-        buscarServicio.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buscarServicioActionPerformed(evt);
-            }
-        });
-        jMenu5.add(buscarServicio);
-
-        eliminarServicio.setText("Eliminar");
-        eliminarServicio.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                eliminarServicioActionPerformed(evt);
-            }
-        });
-        jMenu5.add(eliminarServicio);
-
-        jMenu1.add(jMenu5);
+        jMenu1.add(menuServicios);
 
         jMenuBar1.add(jMenu1);
 
@@ -314,146 +343,31 @@ public class Interfaz extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 26, Short.MAX_VALUE)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(36, 36, 36)
+                        .addComponent(titulo, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(27, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addComponent(titulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1))
+                .addContainerGap(49, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void buscarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarUsuarioActionPerformed
-       
-        jPanel1.setVisible(true);        // TODO add your handling code here:
-        jLabel1.setText("ID de Usuario:");
-        jLabel2.setText("Buscar Usuario");
-        botonBuscarUsuario.setVisible(true);
-        botonBuscarEquipo.setVisible(false);
-        botonBuscarServicio.setVisible(false);
-        botonEliminarUsuario.setVisible(false);
-        botonEliminarEquipo.setVisible(false);
-        botonEliminarServicio.setVisible(false);
-        
-
-
-    }//GEN-LAST:event_buscarUsuarioActionPerformed
-
-    private void eliminaUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminaUsuarioActionPerformed
-  // TODO add your handling code here:
-       jPanel1.setVisible(true);        // TODO add your handling code here:
-        jLabel1.setText("ID de Usuario:");
-        jLabel2.setText("Eliminar Usuario");
-                botonBuscarUsuario.setVisible(false);
-        botonBuscarEquipo.setVisible(false);
-        botonBuscarServicio.setVisible(false);
-        botonEliminarUsuario.setVisible(true);
-        botonEliminarEquipo.setVisible(false);
-        botonEliminarServicio.setVisible(false);
-    }//GEN-LAST:event_eliminaUsuarioActionPerformed
-
-    private void buscarEquipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarEquipoActionPerformed
-              jPanel1.setVisible(true);        // TODO add your handling code here:
-        jLabel1.setText("Codigo del Equipo:");
-        jLabel2.setText("Buscar Equipo");
-                botonBuscarUsuario.setVisible(false);
-        botonBuscarEquipo.setVisible(true);
-        botonBuscarServicio.setVisible(false);
-        botonEliminarUsuario.setVisible(false);
-        botonEliminarEquipo.setVisible(false);
-        botonEliminarServicio.setVisible(false);
-
-    }//GEN-LAST:event_buscarEquipoActionPerformed
-
-    private void eliminarServicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarServicioActionPerformed
-    jPanel1.setVisible(true);        // TODO add your handling code here:
-        jLabel1.setText("Codigo del Servicio:");
-        jLabel2.setText("Eliminar Servicio");        // TODO add your handling code here:
-                botonBuscarUsuario.setVisible(false);
-        botonBuscarEquipo.setVisible(false);
-        botonBuscarServicio.setVisible(false);
-        botonEliminarUsuario.setVisible(false);
-        botonEliminarEquipo.setVisible(false);
-        botonEliminarServicio.setVisible(true);
-    }//GEN-LAST:event_eliminarServicioActionPerformed
-
-    private void botonBuscarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarUsuarioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_botonBuscarUsuarioActionPerformed
-
-    private void buscarServicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarServicioActionPerformed
-        // TODO add your handling code here:
-               jPanel1.setVisible(true);        // TODO add your handling code here:
-        jLabel1.setText("Codigo del Servicio:");
-        jLabel2.setText("Buscar Servicio");
-                        botonBuscarUsuario.setVisible(false);
-        botonBuscarEquipo.setVisible(false);
-        botonBuscarServicio.setVisible(true);
-        botonEliminarUsuario.setVisible(false);
-        botonEliminarEquipo.setVisible(false);
-        botonEliminarServicio.setVisible(false);
-    }//GEN-LAST:event_buscarServicioActionPerformed
-
-    private void registrarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarUsuarioActionPerformed
-
-        // TODO add your handling code here:
-        
-        formato.setVisible(true);
-    }//GEN-LAST:event_registrarUsuarioActionPerformed
-
-    private void eliminaEquipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminaEquipoActionPerformed
-          jPanel1.setVisible(true);        // TODO add your handling code here:
-        jLabel1.setText("Codigo del Equipo:");
-        jLabel2.setText("Eliminar Equipo");        // TODO add your handling code here:
-                        botonBuscarUsuario.setVisible(false);
-        botonBuscarEquipo.setVisible(false);
-        botonBuscarServicio.setVisible(false);
-        botonEliminarUsuario.setVisible(false);
-        botonEliminarEquipo.setVisible(true);
-        botonEliminarServicio.setVisible(false);
-    }//GEN-LAST:event_eliminaEquipoActionPerformed
-
-    private void registraEquipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registraEquipoActionPerformed
-        // TODO add your handling code here:
-        formato.setVisible(true);
-    }//GEN-LAST:event_registraEquipoActionPerformed
-
-    private void botonBuscarEquipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarEquipoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_botonBuscarEquipoActionPerformed
-
-    private void botonBuscarServicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarServicioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_botonBuscarServicioActionPerformed
-
-    private void botonEliminarEquipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarEquipoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_botonEliminarEquipoActionPerformed
-
-    private void botonEliminarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarUsuarioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_botonEliminarUsuarioActionPerformed
-
-    private void botonEliminarServicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarServicioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_botonEliminarServicioActionPerformed
-
-    private void registrarServicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarServicioActionPerformed
-        // TODO add your handling code here:
-        formato.setVisible(true);
-    }//GEN-LAST:event_registrarServicioActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
 System.exit(0);        // TODO add your handling code here:
@@ -465,6 +379,112 @@ JOptionPane.showMessageDialog(null, "Creditos: \n\n"+"Ricardo R. Smirnov"+"\nLui
 "Deibison Steven Grajales Palacio\n" 
 );        // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    private void menuUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuUsuariosActionPerformed
+
+titulo.setText("Usuarios");
+crearUsuario.setVisible(true);
+crearEquipo.setVisible(false);        // TODO add your handling code here:
+crearServicio.setVisible(false);        // TODO add your handling code here:
+leerUsuario.setVisible(true);        // TODO add your handling code here:
+leerEquipo.setVisible(false);        // TODO add your handling code here:
+leerServicio.setVisible(false);        // TODO add your handling code here:
+editarUsuario.setVisible(true);        // TODO add your handling code here:
+editarEquipo.setVisible(false);        // TODO add your handling code here:
+editarServicio.setVisible(false);        // TODO add your handling code here:
+borrarUsuario.setVisible(true);        // TODO add your handling code here:
+borrarEquipo.setVisible(false);        // TODO add your handling code here:
+borrarServicio.setVisible(false);        // TODO add your handling code here:
+
+        //CODIGO DE ACTUALIZAR LA LISTA CON LOS USUARIOS
+
+    }//GEN-LAST:event_menuUsuariosActionPerformed
+
+    private void crearEquipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crearEquipoActionPerformed
+formatoCrearEquipo.setVisible(true);        // TODO add your handling code here:
+    }//GEN-LAST:event_crearEquipoActionPerformed
+
+    private void crearServicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crearServicioActionPerformed
+       formatoCrearServicio.setVisible(true);  // TODO add your handling code here:
+    }//GEN-LAST:event_crearServicioActionPerformed
+
+    private void leerUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_leerUsuarioActionPerformed
+formatoLeerUsuario.setVisible(true);   
+
+    }//GEN-LAST:event_leerUsuarioActionPerformed
+
+    private void menuServiciosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuServiciosActionPerformed
+titulo.setText("Servicios");
+crearUsuario.setVisible(false);
+crearEquipo.setVisible(false);        // TODO add your handling code here:
+crearServicio.setVisible(true);        // TODO add your handling code here:
+leerUsuario.setVisible(false);        // TODO add your handling code here:
+leerEquipo.setVisible(false);        // TODO add your handling code here:
+leerServicio.setVisible(true);        // TODO add your handling code here:
+editarUsuario.setVisible(false);        // TODO add your handling code here:
+editarEquipo.setVisible(false);        // TODO add your handling code here:
+editarServicio.setVisible(true);        // TODO add your handling code here:
+borrarUsuario.setVisible(false);        // TODO add your handling code here:
+borrarEquipo.setVisible(false);        // TODO add your handling code here:
+borrarServicio.setVisible(true);        // TODO add your handling code here:
+
+            //CODIGO ACTUALIZAR LISTA CON SERVICIOS
+    }//GEN-LAST:event_menuServiciosActionPerformed
+
+    private void menuEquiposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuEquiposActionPerformed
+titulo.setText("Equipos");
+crearUsuario.setVisible(false);
+crearEquipo.setVisible(true);        // TODO add your handling code here:
+crearServicio.setVisible(false);        // TODO add your handling code here:
+leerUsuario.setVisible(false);        // TODO add your handling code here:
+leerEquipo.setVisible(true);        // TODO add your handling code here:
+leerServicio.setVisible(false);        // TODO add your handling code here:
+editarUsuario.setVisible(false);        // TODO add your handling code here:
+editarEquipo.setVisible(true);        // TODO add your handling code here:
+editarServicio.setVisible(false);        // TODO add your handling code here:
+borrarUsuario.setVisible(false);        // TODO add your handling code here:
+borrarEquipo.setVisible(true);        // TODO add your handling code here:
+borrarServicio.setVisible(false);        // TODO add your handling code here:
+
+        //CODIGO ACTUALIZAR LISTA PONIENDO TODA LA LISTA DE EQUIPOS
+    }//GEN-LAST:event_menuEquiposActionPerformed
+
+    private void crearUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crearUsuarioActionPerformed
+formatoCrearUsuario.setVisible(true);        //ESTE NO NECESITA MAS CODIGO
+
+    }//GEN-LAST:event_crearUsuarioActionPerformed
+
+    private void editarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarUsuarioActionPerformed
+formatoEditarUsuario.setVisible(true);        // TODO add your handling code here:
+    }//GEN-LAST:event_editarUsuarioActionPerformed
+
+    private void borrarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_borrarUsuarioActionPerformed
+      // Mensaje de si esta seguro borrar y poner al usuario como inactivo... no se borra realmente
+    }//GEN-LAST:event_borrarUsuarioActionPerformed
+
+    private void leerEquipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_leerEquipoActionPerformed
+formatoLeerEquipo.setVisible(true);         // TODO add your handling code here:
+    }//GEN-LAST:event_leerEquipoActionPerformed
+
+    private void editarEquipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarEquipoActionPerformed
+formatoEditarEquipo.setVisible(true);         // TODO add your handling code here:
+    }//GEN-LAST:event_editarEquipoActionPerformed
+
+    private void leerServicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_leerServicioActionPerformed
+formatoLeerServicio.setVisible(true);         // TODO add your handling code here:
+    }//GEN-LAST:event_leerServicioActionPerformed
+
+    private void editarServicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarServicioActionPerformed
+formatoEditarServicio.setVisible(true);         // TODO add your handling code here:
+    }//GEN-LAST:event_editarServicioActionPerformed
+
+    private void borrarEquipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_borrarEquipoActionPerformed
+// Mensaje de si esta seguro borrar y poner al equipo como inactivo... no se borra realmente        // TODO add your handling code here:
+    }//GEN-LAST:event_borrarEquipoActionPerformed
+
+    private void borrarServicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_borrarServicioActionPerformed
+// Mensaje de si esta seguro borrar y poner al servicio como inactivo... no se borra realmente        // TODO add your handling code here:
+    }//GEN-LAST:event_borrarServicioActionPerformed
 
     /**
      * @param args the command line arguments
@@ -506,38 +526,36 @@ JOptionPane.showMessageDialog(null, "Creditos: \n\n"+"Ricardo R. Smirnov"+"\nLui
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextArea areaMuestra;
-    private javax.swing.JButton botonBuscarEquipo;
-    private javax.swing.JButton botonBuscarServicio;
-    private javax.swing.JButton botonBuscarUsuario;
-    private javax.swing.JButton botonEliminarEquipo;
-    private javax.swing.JButton botonEliminarServicio;
-    private javax.swing.JButton botonEliminarUsuario;
-    private javax.swing.JMenuItem buscarEquipo;
-    private javax.swing.JMenuItem buscarServicio;
-    private javax.swing.JMenuItem buscarUsuario;
-    private javax.swing.JMenuItem eliminaEquipo;
-    private javax.swing.JMenuItem eliminaUsuario;
-    private javax.swing.JMenuItem eliminarServicio;
-    private javax.swing.JMenu eliminarUsuario;
+    private javax.swing.JButton borrarEquipo;
+    private javax.swing.JButton borrarServicio;
+    private javax.swing.JButton borrarUsuario;
+    private javax.swing.JButton crearEquipo;
+    private javax.swing.JButton crearServicio;
+    private javax.swing.JButton crearUsuario;
+    private javax.swing.JButton editarEquipo;
+    private javax.swing.JButton editarServicio;
+    private javax.swing.JButton editarUsuario;
     private javax.swing.JFrame jFrame1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JList<String> jList1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu4;
-    private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JOptionPane jOptionPane1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem3;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JMenuItem registraEquipo;
-    private javax.swing.JMenuItem registrarServicio;
-    private javax.swing.JMenuItem registrarUsuario;
-    private javax.swing.JTextField textBuscar;
+    private javax.swing.JButton leerEquipo;
+    private javax.swing.JButton leerServicio;
+    private javax.swing.JButton leerUsuario;
+    private javax.swing.JList<String> lista;
+    private javax.swing.JMenuItem menuEquipos;
+    private javax.swing.JMenuItem menuServicios;
+    private javax.swing.JMenuItem menuUsuarios;
+    private java.awt.Label titulo;
     // End of variables declaration//GEN-END:variables
 }

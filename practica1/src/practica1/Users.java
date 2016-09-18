@@ -3,14 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package lab_prac1_tst3;
+package practica1;
 
 //import static lab_prac1_tst3.FileHandler.escribirArchivoTest;
 
-import static lab_prac1_tst3.FileHandler.addUser2File;
-import static lab_prac1_tst3.FileHandler.escribirArchivoTest;
-import static lab_prac1_tst3.FileHandler.leerArchivoTest;
-import static lab_prac1_tst3.FileHandler.readUserFromFile;
+import static practica1.FileHandler.addUser2File;
+import static practica1.FileHandler.escribirArchivoTest;
+import static practica1.FileHandler.leerArchivoTest;
+import static practica1.FileHandler.readUserFromFile;
 
 //import static lab_prac1_tst3.FileHandler.leerArchivoTest;
 
@@ -29,10 +29,13 @@ public class Users {
 	//se invoca la primera vez que se crea el objeto
 	public Users(String identificacion, String nombres){
 		this.identificacion=identificacion;
-		this.nombres=nombres;		
+		this.nombres=nombres;	
+                
+               
 	}
         
-        
+        public Users ()
+        {}
     public static void main(String [] args) {
 
         //escribirArchivoTest();
@@ -79,6 +82,8 @@ public class Users {
     
         return userAsFileLine;
     }    
+
+ 
     
     
     
